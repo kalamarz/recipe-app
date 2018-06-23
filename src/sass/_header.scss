@@ -1,0 +1,60 @@
+.header {
+    background: linear-gradient( $colorGreen, #a7f15c,);
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+
+
+    &__title {
+        padding: 2rem;
+        word-spacing: 0.2em;
+        letter-spacing: 0.1em;
+        color: $colorEcru;
+        animation: slideInLeft 1.5s ease-out;
+    }
+    &__form {
+        width: 100%;
+    }
+
+    &__input {
+        height: 2rem;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 20px;
+        padding-left: 1rem;
+        border: none;
+    }
+
+    &__select {
+        height: 2rem;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 3px 5px 0 rgba(133, 133, 133, 0.75);
+    }
+
+    &__button {
+        background-color: $colorEcru;
+        color: #86df2e;
+        padding: 0.4rem 0.5rem;
+        border-radius: 20px;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 3px 5px 0 rgba(133, 133, 133, 0.75);
+        
+        &:hover {
+            transform: translateY(-2px);
+        }  
+    }
+
+    &__bookmarks {
+        position: absolute;
+        top: 2rem;
+        right: 12rem;
+    }
+}
+
