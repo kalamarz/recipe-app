@@ -1,0 +1,70 @@
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "main aside"
+}
+
+.recipe {
+    grid-area: main;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+    grid-gap: 1rem 1rem;
+    max-height: 100vh;
+    overflow-y: scroll;
+
+    &__list {
+        list-style: none;
+        text-align: center;
+    }
+
+    &__ingr-list {
+        list-style: none;
+        padding: 0.5rem;
+    }
+
+    &__ingr-title {
+     
+        font-weight: bold;
+    } 
+
+    &__ingr-item {
+        padding: 0.2rem 0;
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+
+    &__card {
+        position: relative;
+        box-shadow: 1px 1px 15px rgba(105, 104, 104, 0.397);
+    }
+
+    &__bookmarks {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.2rem 0.3rem;
+        background: $colorGreen;
+        border: none;
+        color: $colorEcru;
+        cursor: pointer;
+    }
+
+    &__title {
+        font-weight: bold;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+    }   
+
+    &__modal {
+        color: $colorGreen;
+    }
+}

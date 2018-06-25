@@ -13,10 +13,11 @@ function eventListeners() {
 eventListeners();
 
 
-
 function getRecipes(e) {
     e.preventDefault();
 
+    ui.clearRecipes();
+    
     const select = document.querySelector('.header__select');
     let selectValue = select.value;   
     if( selectValue !== ''){
@@ -27,10 +28,12 @@ function getRecipes(e) {
     if (userText === '') {
        ui.showAlert('Please add ingredients', 'header__alert-text');
     } else {
+        ui.showLoader();
         recipe.getRecipeByName(userText, selectValue)
         .then(responseData => {
             console.log(responseData)
             if (responseData.responseData.hits.length === 0) {
+                ui.closeLoader();
                 ui.showAlert('Recipe not found', 'header__alert-text');
             } else {
                 ui.showRecipes(responseData.responseData.hits);
