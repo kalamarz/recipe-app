@@ -1,6 +1,6 @@
 .header {
     background: linear-gradient( $colorGreen, #a7f15c,);
-    height: 60vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,6 +27,7 @@
         border-radius: 20px;
         padding-left: 1rem;
         border: none;
+        box-shadow: 0 3px 5px 0 rgba(133, 133, 133, 0.75);
     }
 
     &__select {
@@ -55,6 +56,16 @@
         position: absolute;
         top: 2rem;
         right: 12rem;
+    }
+
+    &__alert-text {
+        color: $colorAlert;
+        font-weight: 800;
+        padding: 1rem 1.25rem;
+    }
+
+    &__alert-box {
+        height: 1.5rem;
     }
 }
 
