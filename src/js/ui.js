@@ -4,26 +4,27 @@ class UI {
         this.modal = document.querySelector('.modal');
         this.modalBox = document.querySelector('.modal__box');
         this.modalContent = document.querySelector('.modal__content');
+        this.listContainer = document.querySelector('.list__container');
+        this.alertBox = document.querySelector('.header__alert-box');
+        this.listAlert = document.querySelector('.list__alert');
     }
 
-    showAlert(message, className) {
+    showAlert(message, className, alertBox) {
     
-        this.clearAlert();
-
+        this.clearAlert(className);
         const alertText = document.createElement('p');
         alertText.className = className; 
         alertText.appendChild(document.createTextNode(message));
-        const alertBox = document.querySelector('.header__alert-box');
         alertBox.appendChild(alertText);
     
          setTimeout(() => {
-            this.clearAlert();
+            this.clearAlert(className);
         }, 3000);
     }
 
-    clearAlert() {
-        const alertText = document.querySelector('.header__alert-text');
-        if(alertText){
+    clearAlert(className) {
+        const alertText = document.querySelector(`.${className}`);
+        if(alertText) {
             alertText.remove();
         }
     }
@@ -119,6 +120,43 @@ class UI {
             }
         });
     } 
+
+    addToList() {
+        const listForm = document.querySelector('.list__form');
+        if(listForm) {
+        listForm.addEventListener('submit', (e) => {
+
+            const listInput = document.querySelector('.list__input');
+            const textValue = listInput.value;
+
+            if (textValue === '') {
+                this.showAlert('The field is empty', 'list__alert-text', this.listAlert);
+            } else {
+                const listItem = document.createElement('p');
+                listItem.className = 'list__item';   
+                listItem.appendChild(document.createTextNode(textValue));
+
+                const removeButton = document.createElement('button');
+                removeButton.innerHTML = 'x';
+                removeButton.className = "list__remove";
+                listItem.appendChild(removeButton);
+                this.listContainer.appendChild(listItem);
+                listInput.value = '';
+
+                e.preventDefault();
+                this.removeFromList();
+            } 
+        });  
+      }    
+    }
+
+    removeFromList() {
+       this.listContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('list__remove')) {
+                e.target.parentElement.remove(); 
+            }
+        });
+    }
 }
 
 export const ui = new UI();
