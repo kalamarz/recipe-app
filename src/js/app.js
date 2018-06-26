@@ -31,12 +31,12 @@ function getRecipes(e) {
         ui.showLoader();
         recipe.getRecipeByName(userText, selectValue)
         .then(responseData => {
-            console.log(responseData)
             if (responseData.responseData.hits.length === 0) {
                 ui.closeLoader();
                 ui.showAlert('Recipe not found', 'header__alert-text');
             } else {
                 ui.showRecipes(responseData.responseData.hits);
+                ui.displayModal(); 
             }
         })
     }

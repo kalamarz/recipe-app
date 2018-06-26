@@ -1,0 +1,48 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    &--is-opened {
+        display: initial;
+        font-size: 0.9rem;
+    }
+ 
+    &__box {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        display: none;
+        padding: 1rem;
+        background-color: $colorEcru;
+        z-index: 2;
+        &--is-opened {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
+   
+    &__list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    &__button {
+        color: $colorEcru;
+        background-color: $colorGreen;
+        border: none;
+        padding: 0.3rem 0.5rem;
+        cursor: pointer;
+    }
+
+    &__label {
+        font-weight: bold;
+    }
+}

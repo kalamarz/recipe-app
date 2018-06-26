@@ -1,4 +1,10 @@
 class UI {
+    constructor() {
+        this.recipeContainer = document.querySelector('.recipe');
+        this.modal = document.querySelector('.modal');
+        this.modalBox = document.querySelector('.modal__box');
+        this.modalContent = document.querySelector('.modal__content');
+    }
 
     showAlert(message, className) {
     
@@ -23,11 +29,10 @@ class UI {
     }
 
     showRecipes(recipes){
-       this.closeLoader();
-        const recipeContainer = document.querySelector('.recipe');
-
+        this.closeLoader();
+        this.recipeContainer.style.visibility = 'visible';
         recipes.forEach(recipe => {
-        recipeContainer.innerHTML += ` 
+        this.recipeContainer.innerHTML += ` 
             <div class="recipe__card">
                 <button class="recipe__bookmarks">Add to bookmarks</button>
                 <ul class="recipe__list">
@@ -37,7 +42,6 @@ class UI {
                     <li class="recipe__calories">calories / portion: ${Math.round(recipe.recipe.calories/recipe.recipe.yield)}</li>
                     <li class="recipe__portions">portions: ${recipe.recipe.yield}</li>
                     <li class="recipe__source">recipe source: ${recipe.recipe.source}</li>   
-                   
                     <li class="recipe__url"><a target="_blank" class="recipe__link" href="${recipe.recipe.url}">See the full recipe</a></li>
                 </ul>
                 <ul class="recipe__ingr-list">
@@ -47,6 +51,8 @@ class UI {
             </div>
             `;
         });
+
+        this.addToModal(recipes);
     }
 
     displayIngredients(ingredients) {
@@ -60,8 +66,7 @@ class UI {
     }
 
     clearRecipes() {
-        const recipeContainer = document.querySelector('.recipe');
-        recipeContainer.innerHTML = '';
+        this.recipeContainer.innerHTML = '';
     }
 
     showLoader() {
@@ -73,6 +78,47 @@ class UI {
         const loaderContainer = document.querySelector('.loader');
         loaderContainer.classList.remove('loader--is-visible');
     }
+
+    addToModal(recipes) {
+        const buttons = document.querySelectorAll('.recipe__modal-link')
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', (e) => {
+                recipes.forEach((recipe, i) => {
+                    if (recipe.recipe.totalNutrients, i === index) {
+                        this.displayModal(recipe.recipe.totalNutrients, recipe.recipe.yield);
+                    }
+                });
+                e.preventDefault();
+                this.modalBox.classList.add('modal__box--is-opened');
+                this.modal.classList.add('modal--is-opened');      
+            });           
+        });  
+    }
+
+    displayModal(nutrients, portions){
+        this.modalContent.innerHTML = '';
+        for (let key in nutrients) {
+            let value = nutrients[key];
+            this.modalContent.innerHTML += `
+                <ul class="modal__list">
+                    <li class="modal__label">${value.label}</li>
+                    <li class="modal__quantity">${Math.round(value.quantity/portions)}</li>
+                    <li class="modal__unit">${value.unit}</li>
+                </ul>
+            `;
+        }
+        this.closeModal();
+    }
+
+    closeModal() {
+        this.modal.addEventListener('click', (e)=> {
+            e.preventDefault();
+            if(e.target.classList.contains('modal__button')) {
+               e.target.parentElement.classList.remove('modal__box--is-opened');
+               e.target.parentElement.parentElement.classList.remove('modal--is-opened');
+            }
+        });
+    } 
 }
 
 export const ui = new UI();
