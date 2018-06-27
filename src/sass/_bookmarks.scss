@@ -1,0 +1,11 @@
+.bookmarks {
+    background: linear-gradient( $colorGreen, #a7f15c);
+
+    &__title {
+        text-align: center;
+        text-transform: uppercase;
+        padding-top: 3rem;
+        letter-spacing: 0.2em;
+        color: $colorEcru;
+    }
+}

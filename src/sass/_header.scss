@@ -1,17 +1,17 @@
 .header {
-    background: linear-gradient( $colorGreen, #a7f15c,);
-    height: 40vh;
+    background: linear-gradient( $colorGreen, #a7f15c);
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
     text-align: center;
     margin-bottom: 1rem;
+    padding: 0 5rem;
 
 
     &__title {
-        padding: 2rem;
+        padding-bottom: 1.5rem;
         word-spacing: 0.2em;
         letter-spacing: 0.1em;
         color: $colorEcru;
@@ -53,20 +53,35 @@
         }  
     }
 
-    &__bookmarks {
-        position: absolute;
-        top: 2rem;
-        right: 12rem;
-    }
-
     &__alert-text {
         color: $colorAlert;
         font-weight: 800;
-        padding: 1rem 1.25rem;
+        padding: 1rem;
     }
 
     &__alert-box {
-        height: 1.5rem;
+        height: 3.5rem;
+    }
+
+    &__bookmarks {
+        box-sizing: content-box;
+        width: 0;
+        margin-right: 0.5rem;
+        height: 70px;
+        border: 50px solid $colorAlert;
+        border-top: 0 solid;
+        border-bottom: 30px solid transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: flex-end;
+    }
+
+    &__bookmarks-link {
+        color: $colorEcru;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8rem;
     }
 }
-

@@ -9,6 +9,11 @@ function eventListeners() {
     if(searchForm){
         searchForm.addEventListener('submit', getRecipes);
     }
+
+    const recipeContainer = document.querySelector('.recipe');
+    if(recipeContainer){
+        recipeContainer.addEventListener('click', addToBookmarks);
+    }
 }
 eventListeners();
 
@@ -40,7 +45,22 @@ function getRecipes(e) {
                 ui.showRecipes(responseData.responseData.hits);
                 ui.displayModal(); 
             }
-        })
+        });
+    }
+}
+
+function addToBookmarks(e){
+    e.preventDefault();
+
+    if(e.target.classList.contains('recipe__bookmarks')){
+        if(e.target.classList.contains('recipe__bookmarks--is-added')) {
+            e.target.classList.remove('recipe__bookmarks--is-added');
+            e.target.textContent = 'Add to bookmarks';
+          
+        }else {
+            e.target.classList.add('recipe__bookmarks--is-added');
+            e.target.textContent = 'Added to bookmarks';
+        } 
     }
 }
 

@@ -56,6 +56,10 @@
         border: none;
         color: $colorEcru;
         cursor: pointer;
+
+        &--is-added {
+            background: $colorAlert;
+        }
     }
 
     &__title {

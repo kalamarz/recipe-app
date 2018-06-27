@@ -16,10 +16,10 @@ class UI {
         alertText.className = className; 
         alertText.appendChild(document.createTextNode(message));
         alertBox.appendChild(alertText);
-    
-         setTimeout(() => {
+
+        setTimeout(() => {
             this.clearAlert(className);
-        }, 3000);
+        }, 3000); 
     }
 
     clearAlert(className) {
@@ -27,7 +27,7 @@ class UI {
         if(alertText) {
             alertText.remove();
         }
-    }
+    } 
 
     showRecipes(recipes){
         this.closeLoader();
@@ -125,10 +125,10 @@ class UI {
         const listForm = document.querySelector('.list__form');
         if(listForm) {
         listForm.addEventListener('submit', (e) => {
-
+            e.preventDefault();
             const listInput = document.querySelector('.list__input');
             const textValue = listInput.value;
-
+          
             if (textValue === '') {
                 this.showAlert('The field is empty', 'list__alert-text', this.listAlert);
             } else {
@@ -142,8 +142,7 @@ class UI {
                 listItem.appendChild(removeButton);
                 this.listContainer.appendChild(listItem);
                 listInput.value = '';
-
-                e.preventDefault();
+         
                 this.removeFromList();
             } 
         });  
