@@ -1,11 +1,94 @@
 .bookmarks {
     background: linear-gradient( $colorGreen, #a7f15c);
+    padding-bottom: 2rem;
 
+    &__header{
+        max-width: 1000px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__home-link {
+        align-self: flex-start;
+        padding: 1rem;
+        color: $colorEcru;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
     &__title {
         text-align: center;
         text-transform: uppercase;
         padding-top: 3rem;
         letter-spacing: 0.2em;
         color: $colorEcru;
+    } 
+
+    &__content {
+        background-color: $colorEcru;
+        max-width: 1000px;
+        margin: 2rem auto; 
+        border-radius: 25px;
+        display: grid;
+        grid-row-gap: 1rem;
+        padding: 1rem;
+        margin-bottom: 0;
+    }
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    &__card {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 1rem;
+        align-items: center;
+    }
+
+    &__photo {
+        width: 200px;
+        height: 200px;
+        justify-self: center;
+    }
+
+    &__name {
+        font-weight: bold;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        padding-bottom: 1rem;
+    }
+    &__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+    }
+
+    &__button {
+        color: $colorEcru;
+        background: $colorAlert;
+        padding: 0.5rem;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 1px 8px 0 rgba(133, 133, 133, 0.75);
+        border-radius: 20px;
+    }
+
+    &__recipe {
+        background: $colorGreen;
+        color: $colorEcru;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        padding: 0.3rem 1.4rem;
+        cursor: pointer;
+        box-shadow: 0 1px 8px 0 rgba(133, 133, 133, 0.75);
+        border-radius: 20px;
     }
 }

@@ -1,3 +1,5 @@
+import {storage} from './storage';
+
 class UI {
     constructor() {
         this.recipeContainer = document.querySelector('.recipe');
@@ -52,7 +54,7 @@ class UI {
             </div>
             `;
         });
-
+        this.isBookmarked();
         this.addToModal(recipes);
     }
 
@@ -114,9 +116,12 @@ class UI {
     closeModal() {
         this.modal.addEventListener('click', (e)=> {
             e.preventDefault();
-            if(e.target.classList.contains('modal__button')) {
-               e.target.parentElement.classList.remove('modal__box--is-opened');
+            if(e.target.classList.contains('modal__button') ) {
+                e.target.parentElement.classList.remove('modal__box--is-opened');
                e.target.parentElement.parentElement.classList.remove('modal--is-opened');
+            } else if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('modal--is-opened');
+                e.target.firstElementChild.classList.remove('modal__box--is-opened');
             }
         });
     } 
@@ -155,6 +160,46 @@ class UI {
                 e.target.parentElement.remove(); 
             }
         });
+    }
+
+    displayBookmarks(bookmarks) {
+        const bookmarksContent = document.querySelector('.bookmarks__content');
+        bookmarks.forEach(bookmark => {
+            bookmarksContent.innerHTML += ` 
+            <div class="bookmarks__card">
+                <img class="bookmarks__photo" src="${bookmark.image}" alt="${bookmark.name}"> 
+                <ul class="bookmarks__list">
+                    <li class="bookmarks__name">${bookmark.name}</li>
+                    <li class="bookmarks__calories">${bookmark.calories}</li>
+                    <li class="bookmarks__portions">${bookmark.portions}</li>
+                    <li class="bookmarks__source">${bookmark.source}</li>  
+                </ul>
+                <div class="bookmarks__links">
+                    <a target="_blank" class="bookmarks__recipe" href="${bookmark.link}">Get the recipe</a>
+                    <button class="bookmarks__button">Remove from bookmarks</button> 
+                </div>    
+            </div>
+            `;
+        });
+    }
+
+    removeBookmarks(card) {
+        card.remove();
+    }
+
+    isBookmarked() {
+        const recipes = storage.getFromStorage();
+    
+        recipes.forEach(recipe => {
+        
+            const link = recipe.link;
+            let bookmarked = document.querySelector(`[href='${link}']`);
+            if(bookmarked) {
+                const button = bookmarked.parentElement.parentElement.parentElement.firstElementChild;
+                button.classList.add('recipe__bookmarks--is-added');
+                button.textContent = "Added to bookmarks";
+            }
+       });
     }
 }
 
