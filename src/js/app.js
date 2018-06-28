@@ -1,8 +1,10 @@
 import '../sass/main.scss';
 import '../bookmarks.html';
+
 import {ui} from './ui';
 import {recipe} from './recipe';
 import {storage} from './storage';
+import {storageList} from './storage';
 
 function eventListeners() {
 
@@ -98,7 +100,12 @@ function documentReady() {
          
             storage.removeFromStorage(e.target.previousElementSibling.href);
             }
-        })
+        });
+    }
+    const listContainer = document.querySelector('.list__container');
+    if(listContainer) {
+        const lists = storageList.getFromStorage();
+        ui.displayList(lists);
     }
 }
 

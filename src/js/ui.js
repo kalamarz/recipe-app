@@ -1,4 +1,5 @@
 import {storage} from './storage';
+import { storageList } from './storage';
 
 class UI {
     constructor() {
@@ -147,11 +148,21 @@ class UI {
                 listItem.appendChild(removeButton);
                 this.listContainer.appendChild(listItem);
                 listInput.value = '';
-         
+                
+                storageList.saveIntoStorage(textValue);
                 this.removeFromList();
             } 
         });  
       }    
+    }
+
+    displayList(lists) {
+        lists.forEach(list => {
+            this.listContainer.innerHTML += `
+                <p class="list__item">${list}<button class="list__remove">x</button></p>
+            `;
+        });
+        this.removeFromList();
     }
 
     removeFromList() {
@@ -159,6 +170,8 @@ class UI {
             if (e.target.classList.contains('list__remove')) {
                 e.target.parentElement.remove(); 
             }
+            const listItem = (e.target.parentElement.textContent).slice(0, -1);
+            storageList.removeFromStorage(listItem);
         });
     }
 

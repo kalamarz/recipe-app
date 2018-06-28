@@ -13,11 +13,11 @@ class Storage {
   
     }
 
-    removeFromStorage(link){
+    removeFromStorage(item){
         const values = this.getFromStorage();
 
         values.forEach((value, index) => {
-            if(link === value.link) {
+            if((item === value.link) ||(item === value)){
                 values.splice(index,1);
             }
         });
@@ -37,4 +37,5 @@ class Storage {
 }
 
 export const storage = new Storage('recipe');
+export const storageList = new Storage('list');
 
