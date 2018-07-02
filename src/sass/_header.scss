@@ -1,14 +1,17 @@
 .header {
     background: linear-gradient( $colorGreen, #a7f15c);
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 1rem;
-    padding: 0 5rem;
 
+    &__wrapper {
+        max-width: 1000px;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 
     &__title {
         padding-bottom: 1.5rem;
@@ -29,6 +32,12 @@
         padding-left: 1rem;
         border: none;
         box-shadow: 0 3px 5px 0 rgba(133, 133, 133, 0.75);
+        @include breakpoint(m) {
+            max-width: 265px;
+        }
+        @include breakpoint(xs) {
+            max-width: 300px;
+        }
     }
 
     &__select {
@@ -36,6 +45,9 @@
         border-radius: 20px;
         border: none;
         box-shadow: 0 3px 5px 0 rgba(133, 133, 133, 0.75);
+        @include breakpoint(xs) {
+            margin-top: 1rem;
+        }
     }
 
     &__button {

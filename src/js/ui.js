@@ -145,6 +145,7 @@ class UI {
                 const removeButton = document.createElement('button');
                 removeButton.innerHTML = 'x';
                 removeButton.className = "list__remove";
+                removeButton.setAttribute('aria-label', 'remove')
                 listItem.appendChild(removeButton);
                 this.listContainer.appendChild(listItem);
                 listInput.value = '';
@@ -164,6 +165,25 @@ class UI {
         });
         this.removeFromList();
     }
+
+    showHideList() {
+        const arrowButton = document.querySelector('.list__arrow-button');
+        if(arrowButton) {
+            arrowButton.addEventListener('click', () => {
+                if (this.listContainer.classList.contains('list__container--is-open')) {
+                    arrowButton.classList.remove('list__arrow-button--is-up');
+                    arrowButton.setAttribute('aria-expanded', 'false');
+                    this.listContainer.classList.remove('list__container--is-open')
+                   
+                } else {
+                    arrowButton.classList.add('list__arrow-button--is-up');
+                    arrowButton.setAttribute('aria-expanded', 'true');
+                    this.listContainer.classList.add('list__container--is-open')
+                }   
+            });
+        } 
+    }
+
 
     removeFromList() {
        this.listContainer.addEventListener('click', (e) => {
@@ -194,10 +214,12 @@ class UI {
             </div>
             `;
         });
+        const bookmarksEmpty = document.querySelector('.bookmarks__empty');
+        bookmarksEmpty.classList.add('bookmarks__empty--is-hidden');
     }
 
     removeBookmarks(card) {
-        card.remove();
+        card.remove(); 
     }
 
     isBookmarked() {

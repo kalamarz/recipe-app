@@ -55,12 +55,13 @@ function getRecipes(e) {
 }
 
 function addToBookmarks(e){
-    e.preventDefault();
 
     if(e.target.classList.contains('recipe__bookmarks')){
+        e.preventDefault();
         if(e.target.classList.contains('recipe__bookmarks--is-added')) {
             e.target.classList.remove('recipe__bookmarks--is-added');
             e.target.textContent = 'Add to bookmarks';
+            storage.removeFromStorage(e.target.nextElementSibling.lastElementChild.firstElementChild.href);
           
         }else {
             e.target.classList.add('recipe__bookmarks--is-added');
@@ -85,20 +86,23 @@ function addToBookmarks(e){
 function documentReady() {
     
     ui.isBookmarked();
-    
+    ui.showHideList();
+
+    const bookmarksEmpty = document.querySelector('.bookmarks__empty');
     const bookmarksContent = document.querySelector('.bookmarks__content');
+
     if(bookmarksContent){
         const recipes = storage.getFromStorage();
         ui.displayBookmarks(recipes);
-    
+        const bookmarksCards = document.querySelector('.bookmarks__card');
+        if (bookmarksCards === null) {
+            bookmarksEmpty.classList.remove('bookmarks__empty--is-hidden');
+        }
         bookmarksContent.addEventListener('click', (e) => {
-            e.preventDefault();
-        
             if(e.target.classList.contains('bookmarks__button')) {
-                console.log(e.target.previousElementSibling.href)
-            ui.removeBookmarks(e.target.parentElement.parentElement);
-         
-            storage.removeFromStorage(e.target.previousElementSibling.href);
+                e.preventDefault();
+                ui.removeBookmarks(e.target.parentElement.parentElement);
+                storage.removeFromStorage(e.target.previousElementSibling.href);
             }
         });
     }
@@ -108,4 +112,3 @@ function documentReady() {
         ui.displayList(lists);
     }
 }
-

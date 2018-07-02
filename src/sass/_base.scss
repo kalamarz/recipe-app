@@ -11,7 +11,18 @@ body {
     box-sizing: inherit;
 }
 
-
 $colorGreen : #86df2e;
 $colorEcru: #f9fff4;
 $colorAlert: #ff3f72;
+
+@mixin breakpoint($point) {
+    @if $point == xs {
+        @media only screen and (max-width: 423px) { @content };    
+    }
+    @if $point == s {
+        @media only screen and (max-width: 630px ) { @content };    
+    }
+    @if $point == m {
+        @media only screen and (max-width: 768px ) { @content };    
+    }
+}

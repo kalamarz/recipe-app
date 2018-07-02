@@ -8,15 +8,15 @@
     background: rgba(0, 0, 0, 0.6);
     display: none;
     &--is-opened {
-        display: initial;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 0.9rem;
     }
  
     &__box {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
+        max-height: 100%;
+        overflow-y: scroll;
         display: none;
         padding: 1rem;
         background-color: $colorEcru;
@@ -38,8 +38,9 @@
         color: $colorEcru;
         background-color: $colorGreen;
         border: none;
-        padding: 0.3rem 0.5rem;
+        padding: 0.6rem 0.5rem;
         cursor: pointer;
+        line-height: 0rem;
     }
 
     &__label {
